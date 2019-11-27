@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     String nameString;
-    String passWord = "1234";
+    String passWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +29,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 nameString = editText1.getText().toString();
                 passWord = editText2.getText().toString();
-                if (nameString.length() == 0) {
+                if (nameString.length() == 0 && passWord.length() == 0) {
                     Toast.makeText(getApplicationContext(), "กรุณาใส่ข้อมูลทุกข้อ.", Toast.LENGTH_SHORT).show();
+                } else if (passWord.equals("1234")) {
+                    Toast.makeText(getApplicationContext(), "ยินดีต้อนรับคุณ " + nameString + "เข้าสู่เกม", Toast.LENGTH_SHORT).show();
+                    Intent startIntent = new Intent(MainActivity.this,LoginActivity.class);
+                    startIntent.putExtra("Name", nameString);
+                    startActivity(startIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Password ไม่ถูกต้อง กรุณาใส่ข้อมูลใหม่",Toast.LENGTH_SHORT).show();
                 }
-                else if (passWord == "1234" ){
-                        Toast.makeText(getApplicationContext(),"ยินดีต้อนรับคุณ "+nameString+"เข้าสู่เกม",Toast.LENGTH_SHORT).show();
-
-                else {
-
-                }
-                                            }
+            }
 
 
 
